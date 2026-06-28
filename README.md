@@ -1,104 +1,135 @@
-Here's a professional GitHub project description you can use for your repository.
+Based on the uploaded script, here's a professional GitHub repository description suitable for an open-source project.
 
 ---
 
-# Oracle Data Pump Backup Automation Script
+# Oracle RAC Health Check Automation
 
-A professional Bash automation framework for managing **Oracle Data Pump (expdp)** backups with support for **hourly, daily, and weekly backup policies**, automatic retention management, comprehensive logging, and resilient error handling.
+A comprehensive Bash-based health check framework for **Oracle Real Application Clusters (RAC)** environments. The script automatically discovers cluster resources, databases, ASM instances, and services, then generates a detailed health report covering the entire Oracle RAC stack.
 
 ## Features
 
-* 🚀 Supports **Hourly**, **Daily**, and **Weekly** backup modes
-* 📦 Automated Oracle Data Pump exports (`expdp`)
-* 🔄 Batch execution of multiple `.par` files
-* 📁 Automatic organization of dump and log files into timestamped directories
-* 📝 Detailed execution logs for every export job
-* ⚠️ Error detection with failed export reporting
-* ⏭ Continues processing remaining databases even if one export fails
-* 🧹 Automatic cleanup of expired backups using configurable retention policies
-* ⚡ Parallel Data Pump exports
-* 🗜 Compression enabled (`compression=all`)
-* 📊 Runtime statistics and execution summary
-* 🔐 SYSDBA authentication support
-* 🎨 Colorized terminal output for better readability
+* 🔍 Automatic Oracle RAC node discovery
+* 🖥 Clusterware (CRS) health verification
+* 🌐 Inter-node network connectivity tests
+* 💽 ASM disk group and disk status validation
+* 🗄 Automatic RAC database discovery
+* 📊 Database health assessment
+* 📂 Tablespace utilization monitoring
+* ❌ Invalid object detection
+* 🔒 Blocking session identification
+* 📦 Archive destination status verification
+* 💾 Fast Recovery Area (FRA) usage monitoring
+* ⚙ Oracle Services configuration and status checks
+* 🎧 Listener status verification
+* 🗳 OCR and Voting Disk validation
+* 📈 Operating system performance metrics
+* 🚨 Oracle Alert Log error scanning
+* 📝 Timestamped health check reports
+* 🎨 Colorized console output for improved readability
 
-## Backup Modes
+---
 
-| Mode   | Option | Content       | Retention |
-| ------ | ------ | ------------- | --------- |
-| Hourly | `-h`   | Full Export   | 10 days   |
-| Daily  | `-d`   | Data Only     | 10 days   |
-| Weekly | `-w`   | Metadata Only | 30 days   |
+## Health Check Coverage
 
-## Directory Structure
+The script performs end-to-end validation of:
+
+* Oracle Clusterware (CRS)
+* RAC Nodes
+* Network Connectivity
+* ASM Disk Groups
+* ASM Disks
+* Oracle Databases
+* Instance Status
+* Database Role & Open Mode
+* Tablespace Utilization
+* Invalid Database Objects
+* Blocking Sessions
+* Archive Destinations
+* Fast Recovery Area (FRA)
+* RAC Services
+* Listener Status
+* OCR Integrity
+* Voting Disks
+* CPU & Load Average
+* Memory Utilization
+* I/O Performance
+* VM Statistics
+* Oracle Alert Logs
+
+---
+
+## Report Example
+
+The script automatically generates a timestamped report:
 
 ```text
-EXP_HOUR/
-├── YYYY-MM-DD_HH-MM/
-├── log/
-│   └── error/
-
-EXP_DAILY/
-├── YYYY-MM-DD_HH/
-├── log/
-│   └── error/
-
-EXP_WEEKLY/
-├── YYYY-MM-DD/
-├── log/
-│   └── error/
+/tmp/rac_healthcheck_<hostname>_<timestamp>.log
 ```
+
+The report contains complete execution results, making it ideal for:
+
+* Preventive maintenance
+* Routine health checks
+* Incident troubleshooting
+* Oracle RAC audits
+* Capacity planning
+* Production environment validation
+
+---
 
 ## Requirements
 
-* Oracle Database
-* Oracle Data Pump (`expdp`)
+* Oracle Linux / Linux
+* Oracle RAC
+* Oracle Grid Infrastructure
 * Bash
-* Oracle environment variables properly configured
-* Oracle DIRECTORY objects created for each backup destination
+* SQL*Plus
+* SRVCTL
+* CRSCTL
+* ASM
+* Appropriate privileges for both **grid** and **oracle** users
 
-Example:
-
-```sql
-CREATE OR REPLACE DIRECTORY PUMP_HOUR AS '/path/EXP_HOUR';
-CREATE OR REPLACE DIRECTORY PUMP_DAILY AS '/path/EXP_DAILY';
-CREATE OR REPLACE DIRECTORY PUMP_WEEKLY AS '/path/EXP_WEEKLY';
-```
+---
 
 ## Usage
 
 ```bash
-# Hourly backup
-./backup.sh -h
-
-# Daily backup
-./backup.sh -d
-
-# Weekly backup
-./backup.sh -w
+chmod +x rac.sh
+./rac.sh
 ```
 
-## Key Capabilities
+The script automatically discovers the environment and requires no database names or cluster configuration as input.
 
-* Executes all `.par` files automatically in sorted order
-* Creates individual logs for every export job
-* Generates an error report for failed exports
-* Moves generated dump and log files into timestamped backup folders
-* Removes expired backups according to the configured retention period
-* Displays a complete execution summary with total runtime
+---
 
-## Customization
+## Output
 
-The script can be easily customized by modifying:
+The health report includes:
 
-* Oracle environment variables
-* Backup directories
-* Retention periods
-* Data Pump parameters
-* Parallelism level
-* Compression options
-* Export content (Full / Data Only / Metadata Only)
+* Cluster topology
+* Database inventory
+* ASM configuration
+* Storage status
+* Service configuration
+* Database health
+* Performance statistics
+* Critical Oracle errors
+* Overall environment summary
+
+---
+
+## Highlights
+
+* **Zero-configuration auto-discovery**
+* **Production-ready reporting**
+* **Comprehensive Oracle RAC diagnostics**
+* **Designed for Oracle DBAs**
+* **Single-command execution**
+* **Ideal for scheduled health checks via cron**
+
+---
 
 ## Author
 
 **Hamed Esmaeili**
+
